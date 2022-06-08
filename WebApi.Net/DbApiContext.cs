@@ -4,6 +4,11 @@ public class DbApiContext : DbContext
 {
     public DbSet<Response> Responses { get; set; } = null!;
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Response>(r => r.HasNoKey());
+    }
+
     public DbApiContext(DbContextOptions<DbApiContext> options) : base(options)
     {
     }
@@ -11,6 +16,6 @@ public class DbApiContext : DbContext
 
 public class Response
 {
-    [Key]
+    //[Key]
     public string? result { get; set; }
 }
